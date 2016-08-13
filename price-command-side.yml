@@ -1,0 +1,37 @@
+message: Greetings from the PRICE-COMMAND-SIDE microservice [using the LOCALHOST config].
+
+#debug: true
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    preferIpAddress: true
+    
+spring:
+    application:
+        exchange: price.events.fanout.exchange
+        queue: price.default.queue
+        databaseName: prices
+        eventsCollectionName: events
+        snapshotCollectionName: snapshots
+    rabbitmq:
+        hostname: localhost
+        username: test
+        password: password
+    data:
+        mongodb:
+            uri: mongodb://localhost:27017/prices
+logging:
+    level:
+        root: INFO
+        org.springframework: INFO
+            #aop: DEBUG
+            #dao: DEBUG
+            #orm: DEBUG
+            #amqp: DEBUG
+            #data: DEBUG
+            #transaction: DEBUG
+        org.axonframework: INFO
+        com.schlaepfer: INFO
+    file: ./build/logs/command-side-server.log
